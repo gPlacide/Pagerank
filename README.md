@@ -159,4 +159,14 @@ INFO:root:rank=9 pagerank=6.4847e-02 url=www.lawfareblog.com/livestream-house-fo
 
 ```
 python3 pagerank.py --data=./lawfareblog.csv.gz --filter_ratio=0.2 --personalization_vector_query='iran' --search_query='-iran'
+INFO:root:rank=0 pagerank=4.5063e-01 url=www.lawfareblog.com/omphalos
+INFO:root:rank=1 pagerank=2.5712e-01 url=www.lawfareblog.com/cancellation-algerias-elections-opportunity-democratization
+INFO:root:rank=2 pagerank=2.5394e-01 url=www.lawfareblog.com/yemen-houthi-strategy-has-promise-and-risk
+INFO:root:rank=3 pagerank=2.5307e-01 url=www.lawfareblog.com/haftar-attacking-tripoli-us-needs-re-engage-libya
+INFO:root:rank=4 pagerank=2.5307e-01 url=www.lawfareblog.com/how-trumps-approach-middle-east-ignores-past-future-and-human-condition
+INFO:root:rank=5 pagerank=2.0710e-01 url=www.lawfareblog.com/trump-asks-supreme-court-stay-congressional-subpeona-tax-returns
+INFO:root:rank=6 pagerank=1.9135e-01 url=www.lawfareblog.com/blurred-distinction-between-armed-conflict-and-civil-unrest-recent-events-gaza
+INFO:root:rank=7 pagerank=1.8959e-01 url=www.lawfareblog.com/document-sen-tim-kaine-presses-pentagon-legal-definition-collective-self-defense
+INFO:root:rank=8 pagerank=1.8959e-01 url=www.lawfareblog.com/document-july-2018-nato-summit-communique
+INFO:root:rank=9 pagerank=1.8942e-01 url=www.lawfareblog.com/al-kibar-strike-what-difference-26-years-make
 ```
