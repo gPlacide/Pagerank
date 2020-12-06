@@ -13,7 +13,7 @@ INFO:root:rank=9 pagerank=2.2234e-03 url=www.lawfareblog.com/lethal-autonomous-w
 ```
 
 # Pagerank
-In this project, I create a simple search engine for the Lawfare blog (https://www.lawfareblog.com/)
+In this project, I create a simple search engine for the Lawfare blog (https://www.lawfareblog.com/). I later updated this project by including a word2vec library ```gensim``` to improve the search engine where webpages containing related words to the searched key term are also returned. For the examples below I used ```'glove-wiki-gigaword-300'``` model in ```gensim```.
 
 # Step 1: The Power Method
 I implimented ```WebGraph.power_method``` function found in ```pagerank.py``` to compute the pagerank vector.
