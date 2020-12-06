@@ -22,7 +22,7 @@ After my Power method was working correctly, I moved on to the Lawfare blog and 
 ```--search_query``` == **corona**
 
 ```
-placidegatabazi@MacBook-Pro 01b_pagerank_coding % python3.8 pagerank.py --data=./lawfareblog.csv.gz --search_query='corona'
+python3.8 pagerank.py --data=./lawfareblog.csv.gz --search_query='corona'
 INFO:gensim.models.keyedvectors:precomputing L2-norms of word weight vectors
 INFO:root:rank=0 pagerank=1.0038e-03 url=www.lawfareblog.com/lawfare-podcast-united-nations-and-coronavirus-crisis
 INFO:root:rank=1 pagerank=8.9224e-04 url=www.lawfareblog.com/house-oversight-committee-holds-day-two-hearing-government-coronavirus-response
@@ -39,7 +39,7 @@ INFO:root:rank=9 pagerank=6.0187e-04 url=www.lawfareblog.com/livestream-house-ov
 ```--search-query``` == **trump**
 
 ```
-placidegatabazi@MacBook-Pro 01b_pagerank_coding % python3.8 pagerank.py --data=./lawfareblog.csv.gz --search_query='trump'
+python3.8 pagerank.py --data=./lawfareblog.csv.gz --search_query='trump'
 INFO:gensim.models.keyedvectors:precomputing L2-norms of word weight vectors
 INFO:root:rank=0 pagerank=5.7826e-03 url=www.lawfareblog.com/trump-asks-supreme-court-stay-congressional-subpeona-tax-returns
 INFO:root:rank=1 pagerank=5.2338e-03 url=www.lawfareblog.com/document-trump-revokes-obama-executive-order-counterterrorism-strike-casualty-reporting
@@ -56,7 +56,7 @@ INFO:root:rank=9 pagerank=3.4484e-03 url=www.lawfareblog.com/second-circuit-rule
 ```--search-query``` == **iran**
 
 ```
-placidegatabazi@MacBook-Pro 01b_pagerank_coding % python3.8 pagerank.py --data=./lawfareblog.csv.gz --search_query='iran'
+python3.8 pagerank.py --data=./lawfareblog.csv.gz --search_query='iran'
 INFO:gensim.models.keyedvectors:precomputing L2-norms of word weight vectors
 INFO:root:rank=0 pagerank=4.5746e-03 url=www.lawfareblog.com/praise-presidents-iran-tweets
 INFO:root:rank=1 pagerank=4.4174e-03 url=www.lawfareblog.com/how-us-iran-tensions-could-disrupt-iraqs-fragile-peace
@@ -120,7 +120,7 @@ I started by implementing ```WebGraph.make_personalization_vector``` function. T
 
 Earlier when we used ```--search_query``` we got
 ```
-placidegatabazi@MacBook-Pro 01b_pagerank_coding % python3.8 pagerank.py --data=./lawfareblog.csv.gz --search_query='corona'
+python3.8 pagerank.py --data=./lawfareblog.csv.gz --search_query='corona'
 INFO:gensim.models.keyedvectors:precomputing L2-norms of word weight vectors
 INFO:root:rank=0 pagerank=1.0038e-03 url=www.lawfareblog.com/lawfare-podcast-united-nations-and-coronavirus-crisis
 INFO:root:rank=1 pagerank=8.9224e-04 url=www.lawfareblog.com/house-oversight-committee-holds-day-two-hearing-government-coronavirus-response
@@ -135,7 +135,7 @@ INFO:root:rank=9 pagerank=6.0187e-04 url=www.lawfareblog.com/livestream-house-ov
 ```
 but after using ```--personalization_vector_query``` we get
 ```
-placidegatabazi@MacBook-Pro 01b_pagerank_coding % python3.8 pagerank.py --data=./lawfareblog.csv.gz --filter_ratio=0.2 --personalization_vector_query='corona'--search_query='corona'
+python3.8 pagerank.py --data=./lawfareblog.csv.gz --filter_ratio=0.2 --personalization_vector_query='corona'--search_query='corona'
 INFO:gensim.models.keyedvectors:precomputing L2-norms of word weight vectors
 INFO:root:rank=0 pagerank=1.2209e-01 url=www.lawfareblog.com/brexit-not-immune-coronavirus
 INFO:root:rank=1 pagerank=1.2209e-01 url=www.lawfareblog.com/rational-security-my-corona-edition
