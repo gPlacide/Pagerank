@@ -129,47 +129,42 @@ class WebGraph():
         with torch.no_grad():
             n = self.P.shape[0]
 
+            # 
+            nondangling_nodes = torch.sparse.sum(self.P,1).indices()
+            a = torch.ones([n,1])
+            a[nondangling_nodes] = 0
+
             # create variables if none given
             if v is None:
                 v = torch.Tensor([1/n]*n)
-                v = torch.unsqueeze(v, 1)
+                v = torch.unsqueeze(v,1)
             v /= torch.norm(v)
 
             if x0 is None:
                 x0 = torch.Tensor([1/(math.sqrt(n))]*n)
-                x0 = torch.unsqueeze(x0, 1)
+                x0 = torch.unsqueeze(x0,1)
             x0 /= torch.norm(x0)
 
-<<<<<<< HEAD
-            
-
-=======
             # main loop
->>>>>>> 41c45bdbbe39107fdfbbf354c6c9808e87c4cf02
-            # "A" vector
-            a = torch.zeros(n)
-            for i in range(0, n):
-                row = self.P[i]
-                if all(entry == 0 for entry in row):
-                    a[i] = 1
-            #print(a)
-
-            # main loop
-            x = x0.squeeze()
-            k = 0
-            while k < max_iterations:
-                x_new = (self.P.t() @ (alpha*x).t()).t() + ((a.t() @ (alpha*x).t()).t() + (1- alpha)) * v.t()
-                if torch.norm(x_new-x)<=epsilon:
-                    x=x_new
+            xprev = x0
+            x = xprev.detach().clone()
+            for i in range(max_iterations):
+                xprev = x.detach().clone()
+                q = (alpha*x.t()@a + (1-alpha)) * v.t()
+                x = torch.sparse.addmm(
+                        q.t(),
+                        self.P.t(),
+                        x,
+                        beta=1,
+                        alpha=alpha
+                        )
+                x /= torch.norm(x)
+                accuracy = torch.norm(x-xprev)
+                logging.debug('i='+str(i)+' accuracy='+str(accuracy))
+                if accuracy < epsilon:
                     break
-                else:
-                    x = x_new
-                    k += 1
-                
-                #print(x)
-                #print(k)
-                #break
-            return x
+
+            return x.squeeze()
 
     def search(self, pi, query='', max_results=10):
         '''
