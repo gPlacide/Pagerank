@@ -140,8 +140,12 @@ class WebGraph():
                 x0 = torch.unsqueeze(x0, 1)
             x0 /= torch.norm(x0)
 
+<<<<<<< HEAD
             
 
+=======
+            # main loop
+>>>>>>> 41c45bdbbe39107fdfbbf354c6c9808e87c4cf02
             # "A" vector
             a = torch.zeros(n)
             for i in range(0, n):
