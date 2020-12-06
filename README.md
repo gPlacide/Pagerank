@@ -1,3 +1,17 @@
+```
+INFO:gensim.models.keyedvectors:precomputing L2-norms of word weight vectors
+INFO:root:rank=0 pagerank=6.6243e-02 url=www.lawfareblog.com/donald-trump-and-politically-weaponized-executive-branch
+INFO:root:rank=1 pagerank=5.6641e-03 url=www.lawfareblog.com/slaughterbots-and-other-anticipated-autonomous-weapons-problems
+INFO:root:rank=2 pagerank=4.2443e-03 url=www.lawfareblog.com/disappearing-transparency-us-arms-sales
+INFO:root:rank=3 pagerank=3.2001e-03 url=www.lawfareblog.com/introducing-new-paper-weaponized-interdependence
+INFO:root:rank=4 pagerank=3.1659e-03 url=www.lawfareblog.com/atomwaffen-division-member-pleads-guilty-firearms-charge
+INFO:root:rank=5 pagerank=2.3143e-03 url=www.lawfareblog.com/history-do-it-yourself-weapons-and-explosives-manuals-america
+INFO:root:rank=6 pagerank=2.2854e-03 url=www.lawfareblog.com/explainable-ai-and-legality-autonomous-weapon-systems
+INFO:root:rank=7 pagerank=2.2711e-03 url=www.lawfareblog.com/right-wing-extremists-new-weapon
+INFO:root:rank=8 pagerank=2.2652e-03 url=www.lawfareblog.com/lethal-autonomous-weapons-systems-first-and-second-un-gge-meetings
+INFO:root:rank=9 pagerank=2.2234e-03 url=www.lawfareblog.com/lethal-autonomous-weapons-systems-recent-developments
+```
+
 # Pagerank
 In this project, I create a simple search engine for the Lawfare blog (https://www.lawfareblog.com/)
 
