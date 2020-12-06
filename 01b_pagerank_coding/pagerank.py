@@ -9,8 +9,16 @@ import math
 import torch
 import gzip
 import csv
-
 import logging
+import gensim.downloader #standard word2vec library
+
+#model = 'word2vec-google-news-300'         # this one is trained on the most data
+#model = 'fasttext-wiki-news-subwords-300'  # fasttext can create vectors for out of vocabulary words
+#model = 'glove-twitter-25'                 # the smallest model, fits into memory easily
+model = 'glove-wiki-gigaword-300'           # this is a reasonable compromise of size/accuracy
+
+# load the model
+vectors = gensim.downloader.load(model)
 
 
 class WebGraph():
@@ -104,7 +112,6 @@ class WebGraph():
             for i in range(0, n):
                 if url_satisfies_query(self._index_to_url(i), query):
                     v[i] = 1
-            # FIXME: your code goes here
 
         v_sum = torch.sum(v)
         assert(v_sum > 0)
@@ -133,9 +140,6 @@ class WebGraph():
                 x0 = torch.unsqueeze(x0, 1)
             x0 /= torch.norm(x0)
 
-            # main loop
-            # FIXME: your code goes here
-
             
 
             # "A" vector
@@ -144,7 +148,7 @@ class WebGraph():
                 row = self.P[i]
                 if all(entry == 0 for entry in row):
                     a[i] = 1
-            print(a)
+            #print(a)
 
             # main loop
             x = x0.squeeze()
@@ -158,8 +162,8 @@ class WebGraph():
                     x = x_new
                     k += 1
                 
-                print(x)
-                print(k)
+                #print(x)
+                #print(k)
                 #break
             return x
 
@@ -172,19 +176,19 @@ class WebGraph():
         vals, indices = torch.topk(pi, n)
 
         matches = 0
-        for i in range(n):
+        for i in range(n): #Loop over all the webpages in our dataset
             if matches >= max_results:
                 break
             index = indices[i].item()
             url = self._index_to_url(index)
-            pagerank = vals[i].item()
-            if url_satisfies_query(url, query):
+            pagerank = vals[i].item()  #Page rank vector of each url
+            if url_satisfies_query(url, query): #True if any word in the query string is present in the url
                 logging.info(
                     f'rank={matches} pagerank={pagerank:0.4e} url={url}')
                 matches += 1
 
 
-def url_satisfies_query(url, query):
+def url_satisfies_query(url, query): #exact key search
     '''
     This functions supports a moderately sophisticated syntax for searching urls for a query string.
     The function returns True if any word in the query string is present in the url.
@@ -210,18 +214,23 @@ def url_satisfies_query(url, query):
     True
     '''
     satisfies = False
-    terms = query.split()
+    words_lst_tpl = vectors.most_similar(query)[:5] #A list of tuples with all the ~similar words to the query word
 
-    num_terms = 0
-    for term in terms:
+    words_lst = [query] #list to be updated with ~words
+    for i in words_lst_tpl:
+        word = i[0]
+        words_lst.append(word)
+    
+    num_terms=0
+    for term in words_lst:
         if term[0] != '-':
-            num_terms += 1
+            num_terms+=1
             if term in url:
                 satisfies = True
-    if num_terms == 0:
-        satisfies = True
+    if num_terms==0:
+        satisfies=True
 
-    for term in terms:
+    for term in words_lst:
         if term[0] == '-':
             if term[1:] in url:
                 return False
